@@ -42,14 +42,12 @@ class Masssave extends Command {
 		$this->area->setAreaCode( \Magento\Framework\App\Area::AREA_ADMINHTML );
 
 		$totalproducts = $collection->count();
-
+			
+		$output->writeln( 'Re-saving products, this might take a while..' );
 
 		for ( $x = $start; $x < $totalproducts; $x ++ ) {
 			$now = $this->product->getById( $x );
 			$now->save();
-			system( 'clear' );
-			$output->writeln( 'Re-saving products, this might take a while..' );
-			$output->writeln( 'Progress: ' . $x . ' / ' . $totalproducts );
 		}
 
 	}
